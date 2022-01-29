@@ -1,7 +1,6 @@
 from datetime import datetime
 from typing import List, NewType, Tuple
 
-
 def ReadInput(filepath: str) -> List[tuple]:
     """
     Reads input file provided a filepath and converts it into a list of tuples of datetime, person's name and the message
@@ -23,7 +22,7 @@ def ReadInput(filepath: str) -> List[tuple]:
             # Usual case
             conversations.append((timestamp, person, text.strip()))
             
-        except:
+        except ValueError:
             # Go here if there is no user specificied. It means a multiline msg. Previous sender is the user
             conversations.append((timestamp, person, message.strip().lower()))
 
