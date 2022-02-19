@@ -32,13 +32,4 @@ def ReadInput(filepath: str) -> List[tuple]:
     return conversations
 
 
-def FindUsers(conversations: List[tuple]) -> List[str]:
-    """
-    Conversations are a list of tuples with the format (Datetime, sender, message).
-    Returns the list of users
-    """
-    users = []
-    for conv in conversations:
-        if conv[1] not in users:
-            users.append(conv[1])
-    return users
+
