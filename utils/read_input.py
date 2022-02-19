@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import List, NewType, Tuple
+from typing import List
+
 
 def ReadInput(filepath: str) -> List[tuple]:
     """
@@ -14,6 +15,7 @@ def ReadInput(filepath: str) -> List[tuple]:
         try:
             datetime_as_str, person_and_text =  message.split("-")
             timestamp = datetime.strptime(datetime_as_str.strip(), '%m/%d/%y, %H:%M')
+
             person, text = person_and_text.strip().lower().split(':')
 
             if person not in users:
@@ -27,7 +29,16 @@ def ReadInput(filepath: str) -> List[tuple]:
             conversations.append((timestamp, person, message.strip().lower()))
 
     input_file.close()
-
-    # There can only be 2 users. Me and the other person
-    assert len(users) == 2
     return conversations
+
+
+def FindUsers(conversations: List[tuple]) -> List[str]:
+    """
+    Conversations are a list of tuples with the format (Datetime, sender, message).
+    Returns the list of users
+    """
+    users = []
+    for conv in conversations:
+        if conv[1] not in users:
+            users.append(conv[1])
+    return users
