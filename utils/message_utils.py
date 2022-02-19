@@ -1,6 +1,9 @@
 from builtins import all
 from collections import Counter
+from datetime import datetime
 from typing import List, Tuple
+
+import matplotlib.pyplot as plt
 
 
 def GetUsers(conversations: List[tuple]) -> List[str]:
@@ -71,3 +74,14 @@ def GetMessageStatistics(conversations: List[Tuple]):
                 pictures_sent_by_user[user] += 1
 
     return message_sent_by_user, words_sent_by_user, pictures_sent_by_user
+
+
+def GetMessagesByTime(conversations: List[Tuple]):
+    """
+    Give a time distribution of whatsapp chat to visualize when do we chat most often
+    NOTE: conversations are in (time, sender, message) format
+    """
+    msg_distribution_over_time = [conv[0].hour for conv in conversations]
+    plt.hist(msg_distribution_over_time, )
+
+    pass

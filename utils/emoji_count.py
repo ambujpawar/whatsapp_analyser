@@ -24,6 +24,6 @@ def EmojiCount(conversations: Tuple, n: int) -> Tuple:
         
         # space still passes thorugh
         most_count.pop(' ')
-        most_frequent_by_user[user] = most_count.most_common(n)
+        most_frequent_by_user[user] = most_count
     
     return most_frequent_by_user
