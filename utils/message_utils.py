@@ -47,4 +47,27 @@ def GetMessagesByUsers(conversations: List[Tuple]):
             all_messages_by_user[user].append(conv[2])
     return all_messages_by_user
 
-        
+
+def GetMessageStatistics(conversations: List[Tuple]):
+    """
+    Generate a list of statistics based on the conversation.
+    For now it only includes, total messages sent, total messages sent by user, pictures sent
+    """
+    users = GetUsers(conversations)
+    all_message_by_user = GetMessagesByUsers(conversations)
+
+    message_sent_by_user = {}
+
+    message_sent_by_user = {user:len(all_message_by_user[user]) for user in users}
+
+    pictures_sent_by_user = {user: 0 for user in users}
+    words_sent_by_user = {user: 0 for user in users}
+
+    for user in users:
+        for msg in all_message_by_user[user]:
+
+            words_sent_by_user[user] += len(msg)
+            if 'media omitted' in msg:
+                pictures_sent_by_user[user] += 1
+
+    return message_sent_by_user, words_sent_by_user, pictures_sent_by_user

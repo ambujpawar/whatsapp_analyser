@@ -2,7 +2,7 @@ import argparse
 
 from utils.read_input import ReadInput
 from utils.emoji_count import EmojiCount
-
+from utils.message_utils import GetMessageStatistics
 
 def ParseArgs():
     """Parses the arguments"""
@@ -21,8 +21,18 @@ def ParseArgs():
 if __name__ == '__main__':
     # Read the input file
     filepath = "/Users/ambuj/Desktop/PycharmProject1/data/WhatsAppChat-Asha_part2.txt"
+    n = 5
+
     conversations = ReadInput(filepath)
+    statistics = GetMessageStatistics(conversations)
+    
+    """
     emoji_count = EmojiCount(conversations, n=5)
+    for user, emojis in emoji_count.items():
+        print('The {} most common emoji used by {} are: '.format(n, user))
+        for emoji in emojis:
+            print(emoji)
+    """
 
     # args = ParseArgs()
     print("DONE")
