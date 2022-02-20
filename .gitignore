@@ -1,2 +1,6 @@
 *.pyc
 *.vscode
+data/*.txt
+*.ipynb
+.idea
+.DS_Store
