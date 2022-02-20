@@ -45,10 +45,10 @@ def DrawWordCloud(data: Dict, base_image_path: str = None, stopwords: Set = None
     @param stopwords: Path to text file containing all the stopwords
     """
     mask = np.array(Image.open(base_image_path))
-    wordcloud = WordCloud(width=600, height=600, stopwords=stopwords, background_color='white', mask=mask, min_font_size=8, max_font_size=50, max_words=400).generate(data)
+    wordcloud = WordCloud(width=600, height=600, stopwords=stopwords, background_color='white', mask=mask, min_font_size=8, max_font_size=40, max_words=500).generate(data)
     image_colors = ImageColorGenerator(mask)
 
-    plt.figure(figsize=[40,40])
+    plt.figure(figsize=[20,20])
     #plt.imshow(wordcloud, interpolation="bilinear")
     plt.imshow(wordcloud.recolor(color_func=image_colors), interpolation="bilinear")
     plt.axis("off")
