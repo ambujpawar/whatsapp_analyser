@@ -53,5 +53,4 @@ def DrawWordCloud(data: Dict, base_image_path: str = None, stopwords: Set = None
     plt.imshow(wordcloud.recolor(color_func=image_colors), interpolation="bilinear")
     plt.axis("off")
     # store to file
-    plt.savefig("news2.png", format="png") 
     plt.show()
