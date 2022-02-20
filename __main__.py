@@ -2,7 +2,7 @@ import argparse
 
 from utils.read_input import ReadInput
 from utils.emoji_count import EmojiCount
-from utils.message_utils import GetMessageStatistics, GetMessagesByTime
+from utils.message_utils import GetMessageStatistics, GetMessagesByTime, GetMessagesByDay
 
 def ParseArgs():
     """Parses the arguments"""
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     #statistics = GetMessageStatistics(conversations)
 
-    time_statistics = GetMessagesByTime(conversations)
+    time_statistics = GetMessagesByDay(conversations)
 
     """
     emoji_count = EmojiCount(conversations, n=5)
