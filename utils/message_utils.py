@@ -99,6 +99,5 @@ def GetMessagesByDay(conversations: List[Tuple], show_diag: bool=False) -> typin
     msg_distribution_over_day = Counter(msg_distribution_over_day)
     if show_diag:
         plt.bar(msg_distribution_over_day.keys(), msg_distribution_over_day.values())
-        #plt.hist(msg_distribution_over_time, bins=23, rwidth=0.75 )
         plt.show()
     return msg_distribution_over_day
