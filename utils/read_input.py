@@ -1,6 +1,13 @@
 from datetime import datetime
 from typing import List
 
+def ReadStopwordsTextFile(filepath):
+    input_file = open(filepath, encoding='UTF-8')
+    input_strings = input_file.readlines()
+    text_msg = [string.strip().lower() for string in input_strings]
+    input_file.close()
+    return text_msg
+
 
 def ReadInput(filepath: str) -> List[tuple]:
     """

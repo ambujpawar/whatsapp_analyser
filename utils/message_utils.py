@@ -1,7 +1,7 @@
 from builtins import all
 from collections import Counter
 import typing
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 
@@ -51,7 +51,7 @@ def GetMessagesByUsers(conversations: List[Tuple]):
     return all_messages_by_user
 
 
-def GetMessageStatistics(conversations: List[Tuple]):
+def GetMessageStatistics(conversations: List[Tuple]) -> Dict:
     """
     Generate a list of statistics based on the conversation.
     For now it only includes, total messages sent, total messages sent by user, pictures sent
@@ -73,31 +73,35 @@ def GetMessageStatistics(conversations: List[Tuple]):
             if 'media omitted' in msg:
                 pictures_sent_by_user[user] += 1
 
-    return message_sent_by_user, words_sent_by_user, pictures_sent_by_user
+    stats = {
+        'messages_sent_by_user': message_sent_by_user,
+        'words_sent_by_user': words_sent_by_user,
+        'media_sent_by_user': pictures_sent_by_user
+    }
+    return stats
 
 
-def GetMessagesByTime(conversations: List[Tuple], show_diag: bool=False) -> typing.Counter:
+def GetMessagesByTime(conversations: List[Tuple], draw_diag: bool=False) -> typing.Counter:
     """
     Give a time distribution of whatsapp chat to visualize when do we chat most often
     NOTE: conversations are in (time, sender, message) format
     """
     msg_distribution_over_time = [conv[0].hour for conv in conversations]
     msg_distribution_over_time = Counter(msg_distribution_over_time)
-    if show_diag:
+    if draw_diag:
         plt.bar(msg_distribution_over_time.keys(), msg_distribution_over_time.values())
-        #plt.hist(msg_distribution_over_time, bins=23, rwidth=0.75 )
         plt.show()
     return msg_distribution_over_time
 
 
-def GetMessagesByDay(conversations: List[Tuple], show_diag: bool=False) -> typing.Counter:
+def GetMessagesByDay(conversations: List[Tuple], draw_diag: bool=False) -> typing.Counter:
     """
     Give a time distribution of whatsapp chat to visualize what day do we chat most often
     NOTE: conversations are in (time, sender, message) format
     """
     msg_distribution_over_day = [conv[0].weekday() for conv in conversations]
     msg_distribution_over_day = Counter(msg_distribution_over_day)
-    if show_diag:
+    if draw_diag:
         plt.bar(msg_distribution_over_day.keys(), msg_distribution_over_day.values())
         plt.show()
     return msg_distribution_over_day

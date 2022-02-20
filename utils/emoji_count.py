@@ -6,7 +6,7 @@ from typing import Tuple
 from .message_utils import GetMessagesByUsers, GetUsers
 
 
-def EmojiCount(conversations: Tuple, n: int) -> Tuple:
+def EmojiCount(conversations: Tuple) -> Tuple:
     """
     Returns the top n emojis used by the user
     NOTE: Conversations are in the form of (time, user, text)
